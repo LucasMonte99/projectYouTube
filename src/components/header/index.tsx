@@ -7,7 +7,8 @@ import {
     SearchInputContainer,
     SearchInput,
     SearchButton,
-    HeaderButton
+    HeaderButton,
+    KeyboardIcon,
 } from "./styles";
 import HamburguerIcon from '../../assets/hamburger.png';
 import Logo from '../../assets/YouTube-Logo.png';
@@ -15,6 +16,7 @@ import SearchIcon from '../../assets/search.png';
 import MicIcon from '../../assets/microfone-gravador.png';
 import VideoIcon from '../../assets/video.png';
 import NotificationIcon from '../../assets/sino.png';
+import Keyboard from '../../assets/teclado1.png';
 
 interface Iprops{
     openMenu: boolean,
@@ -39,6 +41,7 @@ function Header({ openMenu, setOpenMenu }: Iprops){
                 <SearchContainer>
                     <SearchInputContainer>
                         <SearchInput placeholder="Pesquisar" />
+                        <KeyboardIcon alt= "" src={Keyboard}/>
                     </SearchInputContainer>
                     <SearchButton>
                         <ButtonIcon alt="" src={SearchIcon} />

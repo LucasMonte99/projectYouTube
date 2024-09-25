@@ -17,23 +17,28 @@ export const LogoContainer = styled.header`
     align-items: center;
 `;
 
-export const ButtonContainer = styled.div<{ margin?: string }>`
+export const ButtonContainer = styled.div<{ margin? : string }>`
     width: 40px;
     height: 40px;
-    border-radius: 50%;
     margin:${({ margin }) => margin? margin : 0 };
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: relative;
+   
 
-    :hover {
+    &:hover {
         background-color: #f2f2f2;
+        
     }
+    
 `;
 
 export const ButtonIcon = styled.img`
     width: 20px;
+
 `;
 
 export const SearchContainer = styled.div`
@@ -55,6 +60,11 @@ export const SearchInput = styled.input`
     height:25px;
     outline:none;
     border:none;
+`;
+
+export const KeyboardIcon = styled.img`
+    width: 20px;
+    cursor: pointer;
 `;
 
 export const SearchButton = styled.div`
