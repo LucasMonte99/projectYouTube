@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { 
     ButtonIcon,
     ButtonIcons,
@@ -78,48 +79,57 @@ import YtEnviar from '../../assets/yYicons/enviarFeedback.png';
 
 
 
-
-
-
-
-
-
 interface IProps {
     openMenu : boolean;
 }
 
+
+
 function Menu({ openMenu }: IProps){
+        const navigate = useNavigate();
+
+
     return (
         <Container openMenu={openMenu}>
-            
-                <MenuItem openMenu={openMenu}>   
-                    <ButtonIcon alt="" src={Home} />
-                    <span>Home</span>
+
+                <MenuItem openMenu={openMenu} onClick={ ()=> navigate('/')}>            
+                        <ButtonIcon alt="" src={Home} />
+                        <span>Início</span>   
                 </MenuItem>
 
-                <MenuShorts openMenu={openMenu}>
+                <MenuShorts openMenu={openMenu}onClick={ ()=> navigate('/shorts')}>
+                
                     <ButtonIcon alt="" src={Shorts} />
                     <span>Shorts</span>
+                
                 </MenuShorts>
 
-                <MenuInscricoes openMenu={openMenu}>
+                <MenuInscricoes openMenu={openMenu}onClick={ ()=> navigate('/inscricoes')}>
+                
                     <ButtonIcon alt="" src={Inscrições} />
                     <span>Inscrições</span>
+                    
                 </MenuInscricoes>
 
-                <MenuMusic openMenu={openMenu}>
+                <MenuMusic openMenu={openMenu}onClick={ ()=> navigate('/music')}>
+                
                     <ButtonIcon alt="" src={Music} />
                     <span>Youtube Music</span>
+                
                 </MenuMusic>
 
-                <MenuVoce openMenu={openMenu}>
+                <MenuVoce openMenu={openMenu}onClick={ ()=> navigate('/voce')}>
+                
                     <ButtonIcon alt="" src={Voce} />
                     <span>Você</span>
+                
                 </MenuVoce>
 
-                <MenuDownloads openMenu={openMenu}>
+                <MenuDownloads openMenu={openMenu}onClick={ ()=> navigate('/downloads')}>
+                
                     <ButtonIcon alt="" src={Downloads} />
                     <span>Downloads</span>
+                
                 </MenuDownloads>
             <Divisor openMenu={openMenu} />
         

@@ -9,7 +9,8 @@ export const Container = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
+    top: 0;
 `;
 
 export const LogoContainer = styled.header`
@@ -80,8 +81,41 @@ export const SearchButton = styled.div`
 `;
 
 export const HeaderButton = styled.div`
-    width:200px;
+    width:300px;
     display:flex;
 `;
 
+export const FazerLogin = styled.button`
+    display: flex;
+    height: 36px;
+    font-size: 14px;
+    line-height: 36px;
+    color: #065fd4;
+    border: 1px solid #d3d3d3;
+    border-radius: 18px;
+    font-family: "Roboto", "Arial", sans-serif;
+    font-weight:500;
+    cursor: pointer;
+    box-sizing:border-box;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    margin-left: 50px;
+    margin-top: 2px;
+    background-color: white;
+    img{
+        width: 20px;
+        height: 20px;
+    }
+
+    span{
+        display: block;
+        margin: 5px;
+    }
+
+    &:hover {
+        background-color: #3ea6ff54;
+        border:none;
+    }
+`;
 

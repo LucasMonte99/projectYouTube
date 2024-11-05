@@ -9,6 +9,7 @@ import {
     SearchButton,
     HeaderButton,
     KeyboardIcon,
+    FazerLogin
 } from "./styles";
 import HamburguerIcon from '../../assets/hamburger.png';
 import Logo from '../../assets/YouTube-Logo.png';
@@ -17,17 +18,37 @@ import MicIcon from '../../assets/microfone-gravador.png';
 import VideoIcon from '../../assets/video.png';
 import NotificationIcon from '../../assets/sino.png';
 import Keyboard from '../../assets/teclado1.png';
+import LogoLogin from '../../assets/yYicons/fazer login.png';
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../context/userContext";
+import Dropdown from "../../dropdown/dropdown";
+
 
 interface Iprops{
     openMenu: boolean,
-    setOpenMenu: (openMenu:boolean) => void
+    setOpenMenu: (openMenu:boolean) => void,
+
 }
 
+
+
+
+
+
+
 function Header({ openMenu, setOpenMenu }: Iprops){
+    const { login, logOut } = useContext(UserContext)
+
+    const navigate = useNavigate();
+    
+
+
+
     return (
-        <div>
+        
             <Container>
-                <LogoContainer>
+                <LogoContainer onClick={ ()=> navigate('/')}>
                     <ButtonContainer onClick={() => setOpenMenu(!openMenu)} margin='0 10px 0 0'>
                         <ButtonIcon alt="" src={HamburguerIcon} />
                     </ButtonContainer>
@@ -58,13 +79,30 @@ function Header({ openMenu, setOpenMenu }: Iprops){
                     <ButtonContainer margin='0 0 0 10px'>
                         <ButtonIcon alt="" src={NotificationIcon} />
                     </ButtonContainer>
-                    <ButtonContainer margin='0 0 0 10px'>
-                       L
-                    </ButtonContainer>
+                    
+                    {login? 
+                        <>                    
+                        <ButtonContainer margin='0 0 0 10px'>                       
+                        </ButtonContainer>
+                        <Dropdown />
+                        
+                                                
+                        <span onClick={() => logOut()}>Sair</span>
+                    </>                      
+                    :
+                        <FazerLogin onClick={() => navigate('/login')}>
+                            <ButtonIcon alt="" src={LogoLogin} />
+                            
+                           <span>Fazer Login</span> 
+                        </FazerLogin>
+                    }
+
                 </HeaderButton>
+                
 
             </Container>
-        </div>
+            
+        
     )
 }
 
