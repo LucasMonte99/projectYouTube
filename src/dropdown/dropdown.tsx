@@ -22,7 +22,7 @@ import user from '../assets/yYicons/Lucas1.jpg'
 interface Idrop {
     
     children?: React.ReactNode;
-    onClick?: () => void;
+    onClick?: () => void; 
 }
 
 interface DropdownItemProps {
