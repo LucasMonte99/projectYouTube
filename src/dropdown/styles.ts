@@ -7,6 +7,7 @@ export const MenuContainer = styled.div`
     align-items: center;
     justify-content: center;
     
+    
 `;
 
 export const OverflowDropdownMenu = styled.div`
@@ -24,22 +25,23 @@ export const ImageLogo = styled.img`
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 75px;
 `;
 
 export const DropdownMenu = styled.div`
-    position: absolute;
-    display:flex;
-    top: 10px;
-    right: 150px;
-    padding: 10px 20px;
-    box-sizing:border-box;
-    align-items:center;
-    flex-direction: column;
-    background-color: white;
-    border-radius: 30px;
-    
+  display: block;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: white;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  width: 300px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 100;
 `;
+
 
 
 
@@ -52,7 +54,7 @@ export const Ul = styled.ul`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    
+    margin-top: -50px;
 
 
 `;
@@ -61,7 +63,7 @@ export const Li = styled.li`
     padding: 10px 0;
     list-style: none;
     cursor: pointer;
-    
+   
 `;
 
 export const Divisor = styled.div `
@@ -138,7 +140,7 @@ export const ButtonIcon = styled.img`
     border-radius: 50%;
     overflow: hidden;
     cursor: pointer;
-    
+   
 `;
 
 

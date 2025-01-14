@@ -43,6 +43,7 @@ import {
     MenuInformativo,
     MenuInformativo2,
     Copyright,
+    
 } from "./styles";
 import Home from '../../assets/yYicons/home.png';
 import Shorts from '../../assets/yYicons/shorts.png';
@@ -95,6 +96,7 @@ function Menu({ openMenu }: IProps){
                 <MenuItem openMenu={openMenu} onClick={ ()=> navigate('/')}>            
                         <ButtonIcon alt="" src={Home} />
                         <span>Início</span>   
+                        
                 </MenuItem>
 
                 <MenuShorts openMenu={openMenu}onClick={ ()=> navigate('/shorts')}>
@@ -154,7 +156,7 @@ function Menu({ openMenu }: IProps){
                     <span>Playlists</span>
             </MenuPlaylists>
 
-            <MenuSeusVideos openMenu={openMenu}>
+            <MenuSeusVideos openMenu={openMenu}onClick={ ()=> navigate('/videos')}>
                     <ButtonIcon alt="" src={SeusVideos} />
                     <span>Seus Vídeos</span>
             </MenuSeusVideos>
