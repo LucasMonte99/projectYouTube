@@ -1,5 +1,14 @@
 import styled from "styled-components";
 
+interface Responsive {
+    openSearch: boolean
+}
+
+interface ClearButtonProps {
+    clearButton: boolean;
+}
+
+
 export const Container = styled.header`
     width:100%;
     height: 55px;
@@ -42,7 +51,7 @@ export const ButtonIcon = styled.img`
 
 `;
 
-export const SearchContainer = styled.div`
+export const SearchContainer = styled.div<Responsive>`
     display:flex;
 `;
 
@@ -117,5 +126,26 @@ export const FazerLogin = styled.button`
         background-color: #3ea6ff54;
         border:none;
     }
+`;
+
+export const ClearButton = styled.button<ClearButtonProps>`
+  display: ${({clearButton}) => clearButton? 'flex' : 'none'};
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: .4s;
+  background-color: ${({theme}) => theme.colors.secondary};
+
+  &:hover{
+    background-color: ${({theme}) => theme.colors.borderColor};
+  }
+`;
+
+export const CloseImg = styled.img`
+  width: 15px;
 `;
 

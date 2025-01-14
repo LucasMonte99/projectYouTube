@@ -1,52 +1,35 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
+import { createContext, useContext, useState } from "react";
 
-
-interface MenuContextType {
+interface AppContextType {
   openMenu: boolean;
-  setOpenMenu: (isOpen: boolean) => void; 
+  setOpenMenu: (open: boolean) => void;
 }
 
+interface AppContextProps {
+  children: React.ReactNode;
+}
 
-const MenuContext = createContext<MenuContextType | undefined>(undefined);
+const AppContext = createContext<AppContextType>({
+  openMenu: false,
+  setOpenMenu: () => {},
+} as AppContextType);
 
+export const useAppContext = () => useContext(AppContext);
 
-export const MenuProvider = ({ children }: { children: ReactNode }) => {
-  const [openMenu, setOpenMenu] = useState<boolean>(false);
-
-  return (
-        <MenuContext.Provider value={{ openMenu, setOpenMenu }}>
-            {children}
-        </MenuContext.Provider>
-    );
-};
-
-
-export const MenuComponent = () => {
-  const context = useContext(MenuContext);
-
-  if (!context) {
-    throw new Error('Error');
-  }
-
-  const { openMenu, setOpenMenu } = context;
+export const AppProvider: React.FC<AppContextProps> = ({ children }) => {
+  const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <div>
-      <p>O menu está {openMenu ? 'aberto' : 'fechado'}</p>
-      <button onClick={() => setOpenMenu(true)}>Abrir Menu</button>
-      <button onClick={() => setOpenMenu(false)}>Fechar Menu</button>
-    </div>
+    <AppContext.Provider value={{ openMenu, setOpenMenu }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 
 
-export const App = () => (
-  <MenuProvider>
-    <MenuComponent />
-  </MenuProvider>
-);
 
-export default App;
+
+
 
 
     

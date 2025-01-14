@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
-export const Container = styled.div<{ openMenu:boolean }>`
-    width: ${({ openMenu }) => openMenu? '310px' : '100px'};
-    height: calc(100vh - 55px);
-    box-sizing:border-box;
-    padding: 10px 10px 10px 10px;
-    display:flex;
-    align-items:center;
-    flex-direction: column;
-    overflow-y:${({ openMenu }) => openMenu? 'auto' : 'none'};
-    position: sticky;
-    top: 55px;
+export const Container = styled.div<{ openMenu: boolean }>`
+  width: ${({ openMenu }) => (openMenu ? "310px" : "80px")};
+  height: calc(100vh - 55px);
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: ${({ openMenu }) => (openMenu ? "auto" : "hidden")};
+  position: fixed;
+  background-color: white;
+  transition: width 0.3s ease-in-out;
+  z-index: 999;
 `;
 
 export const MenuItem = styled.div<{ openMenu: boolean }>`
@@ -326,3 +327,4 @@ span{
     cursor: default;
 }
 `;
+
