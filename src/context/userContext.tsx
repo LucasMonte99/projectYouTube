@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState,useCallback } from "react";
+import { createContext, useEffect, useState} from "react";
 import api from "../api";
 
 
@@ -14,33 +14,39 @@ export const UserStorage = ({ children }: any) => {
 
 
     
-    const getVideos = useCallback((token: string, userId: string) => {
-      api.get(`/videos/get-videos/${userId}`, { headers: { authorization: token } })
-        .then(({ data }) => {
-          setUserVideos(data.videos);
-        })
-        .catch((error) => {
-          console.log('Erro ao buscar vídeos', error);
-        });
-    }, []);
+    const getVideos = async (token: string, user_id: string) => {
+      try {
+        const response = await api.get(`/videos/get-videos/${user_id}`, { headers: { authorization: token } });
+        if (response.status === 200) {
+          console.log("resposta")
+          setUserVideos(response.data.videos);
+          console.log(response.data.videos);
+        }
+      } catch (error) {
+        console.log('erro ao buscar vídeos', error);
+      }
+    };
+    
 
-    const getUser = useCallback((token: string) => {
-      api.get('/user/get-user', { headers: { Authorization: token } })
-        .then(({ data }) => {
-          setUser(data.user);
+    const getUser = async (token: string) => {
+      try {
+        console.log("Buscando informações do usuário com token:", token);
+        const response = await api.get('/users/get-user', { headers: { authorization: token } });
+        if (response.status === 200) {
+          console.log("Usuário recebido com sucesso:", response.data.user);
+          setUser(response.data.user);
           setLogin(true);
-          getVideos(token, data.user.id);
-        })
-        .catch((error) => {
-          console.log('Usuário não autenticado', error);
-        });
-    }, [getVideos]);
+          getVideos(token, response.data.user.id);
+        }
+      } catch (error) {
+        console.log('usuário não autenticado', error)
+      }
+    };
     
     useEffect(() => {
-      if (token) {
-        getUser(token);
-      }
-    }, [token, getUser]);
+      getUser(token)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [token]);
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -97,13 +103,15 @@ export const UserStorage = ({ children }: any) => {
 
       const createVideos = async (token: string, user_id: string, title: string, description: string, thumbnail: string, publishedAt: Date) => {
         try {
-          const response = await api.post(`/videos/create-video/${user_id}`, { title, description, thumbnail, publishedAt },
+          
+          const response = await api.post(`/videos/create-video/${user_id}`, { user_id, title, description, thumbnail, publishedAt },
             { headers: { authorization: token } });
           if (response.status === 200) {
             alert('Video enviado com sucesso!');
-            getUser(token);
+            
           }
         } catch (error) {
+          
           alert('Não foi possível enviar o vídeo. Tente novamente.');
         }
       };

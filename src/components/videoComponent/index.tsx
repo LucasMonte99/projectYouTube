@@ -1,23 +1,30 @@
-import { Container,ChannelImage, ImageBanner, TextCard, TextContainer, Title, TitleContainer } from "./styles";
+import { Banner, ChannelImage, Container, TextCard, TextContainer, Title, TitleContainer } from "./styles";
 
-
-function VideoComponent({ video } : any){
-    
-    return(
-        <Container>
-            <ImageBanner src="https://i.ytimg.com/vi/rGiieksqZdI/hq720.jpg?sqp=-oaymwEXCNAFEJQDSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDbIY53z_7i7nX9UhBUhd1sWGArnA" />
-            <TitleContainer>
-                <ChannelImage>
-                    LM
-                </ChannelImage>
-                <TextContainer>
-                    <Title>{video.title}</Title>
-                    <TextCard>{video.channel}</TextCard>
-                    <TextCard>{video.views} visualizações  há {video.time}</TextCard>
-                </TextContainer>
-            </TitleContainer>
-        </Container>
-    )
+interface Props {
+  title: string
+  thumbnail: string
+  channelImage: string
+  details: string
+  publishedAt: string
 }
 
-export default VideoComponent;
+function YourVideosCards(props: Props) {
+
+  return (
+    <Container>
+      <Banner alt="thumbnail" src={props.thumbnail}/>
+      <TitleContainer>
+        <ChannelImage>
+          {props.channelImage}
+        </ChannelImage>
+        <TextContainer>
+          <Title>{props.title}</Title>
+          <TextCard>{props.details}</TextCard>
+          <TextCard>{props.publishedAt}</TextCard>
+        </TextContainer>
+      </TitleContainer>
+    </Container>
+  )
+}
+
+export default YourVideosCards;
