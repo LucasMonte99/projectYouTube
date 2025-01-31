@@ -1,16 +1,25 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
-  cursor: pointer;
 
+export const Container = styled.div<{ isVideosPage: boolean }>`
+  width: ${({ isVideosPage }) => (isVideosPage ? "35%" : "100%")}; /* Ajusta o tamanho dos vídeos na rota /videos */
+  max-width: ${({ isVideosPage }) => (isVideosPage ? "330px" : "none")}; /* Define um tamanho máximo na rota /videos */
+  
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 `;
 
-export const Banner = styled.img`
-  width: 100%;
-  height: 210px;
-  border-radius: 12px;
-  object-fit: cover;
+
+export const Banner = styled.img<{ isVideosPage: boolean }>`
+width: ${({ isVideosPage }) => (isVideosPage ? "100%" : "100%")};
+height: 210px;
+border-radius: 12px;
+object-fit: cover;
+  
 `;
 
 export const TitleContainer = styled.div`

@@ -12,7 +12,7 @@ export const YourVideosContainer = styled.div`
 `;
 
 
-export const Container = styled.div<{ openMenu: boolean }>`
+export const Container = styled.div<{ openMenu: boolean;isVideosPage: boolean }>`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

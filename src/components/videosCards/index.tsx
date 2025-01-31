@@ -1,34 +1,33 @@
-import { Banner, ChannelImage, Container, TextCard, TextContainer, Title, TitleContainer} from "./styles";
+import { useLocation } from "react-router-dom";
+import { Container, Banner, TitleContainer, ChannelImage, TextContainer, Title, TextCard } from "./styles";
 
 interface Props {
-    title: string
-    thumbnail: string
-    channelImage: string
+    title: string;
+    thumbnail: string;
+    channelImage: string;
     channelName: string;
     details: string;
-    description?: string;
     publishedAt: string;
 }
 
-
-  
-
 function VideoCard(props: Props) {
+    const location = useLocation();
+    const isVideosPage = location.pathname === "/videos";
 
-    return(
-        <Container>
-            <Banner src={props.thumbnail} alt="Thumbnail do vídeo" />
+    return (
+        <Container isVideosPage={isVideosPage}>
+            <Banner src={props.thumbnail} alt="Thumbnail do vídeo" isVideosPage={isVideosPage} />
             <TitleContainer>
                 <ChannelImage>{props.channelImage}</ChannelImage>
-            <TextContainer>
+                <TextContainer>
                     <Title>{props.title}</Title>
                     <TextCard>{props.channelName}</TextCard>
                     <TextCard>{props.details}</TextCard>
-                    <TextCard>{(props.publishedAt)}</TextCard>
+                    <TextCard>{props.publishedAt}</TextCard>
                 </TextContainer>
             </TitleContainer>
         </Container>
-    )
+    );
 }
 
 export default VideoCard;

@@ -18,9 +18,11 @@ export const UserStorage = ({ children }: any) => {
       try {
         const response = await api.get(`/videos/get-videos/${user_id}`, { headers: { authorization: token } });
         if (response.status === 200) {
-          console.log("resposta")
+          
           setUserVideos(response.data.videos);
-          console.log(response.data.videos);
+          
+          console.log("Resposta da API:", response.data); 
+          console.log("Vídeos recebidos:", response.data.videos);
         }
       } catch (error) {
         console.log('erro ao buscar vídeos', error);
@@ -29,18 +31,13 @@ export const UserStorage = ({ children }: any) => {
     
 
     const getUser = async (token: string) => {
-      try {
-        console.log("Buscando informações do usuário com token:", token);
-        const response = await api.get('/users/get-user', { headers: { authorization: token } });
-        if (response.status === 200) {
-          console.log("Usuário recebido com sucesso:", response.data.user);
-          setUser(response.data.user);
-          setLogin(true);
-          getVideos(token, response.data.user.id);
-        }
-      } catch (error) {
-        console.log('usuário não autenticado', error)
-      }
+      api.get('/user/get-user' , {headers: {Authorization: token}}).then(({ data }) => {
+        setUser(data.user);
+        setLogin(true);
+        getVideos(token, data.user.id)
+      }).catch((error) =>{
+        console.log('usuário não autenticado' , error)
+      })
     };
     
     useEffect(() => {
@@ -103,18 +100,16 @@ export const UserStorage = ({ children }: any) => {
 
       const createVideos = async (token: string, user_id: string, title: string, description: string, thumbnail: string, publishedAt: Date) => {
         try {
-          
-          const response = await api.post(`/videos/create-video/${user_id}`, { user_id, title, description, thumbnail, publishedAt },
+          const response = await api.post(`/videos/create-video/${user_id}`, { title, description, thumbnail, publishedAt },
             { headers: { authorization: token } });
           if (response.status === 200) {
             alert('Video enviado com sucesso!');
-            
+            getUser(token);
           }
         } catch (error) {
-          
           alert('Não foi possível enviar o vídeo. Tente novamente.');
         }
-      };
+      }
       
     return (
         <UserContext.Provider value={{

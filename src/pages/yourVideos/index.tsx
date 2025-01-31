@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import {
     AddVideoButton,
     ClearButton,
@@ -22,6 +23,9 @@ import {
   import VideoCard from "../../components/videosCards";
   
   function YourVideos() {
+
+    const location = useLocation();
+    const isVideosPage = location.pathname === "/videos";
     
     interface Videos {
       id: string;
@@ -137,9 +141,9 @@ import {
     return (
       <YourVideosContainer>
         
-        <Container openMenu={openMenu}>
+        <Container openMenu={openMenu} isVideosPage={isVideosPage}>
           <UserContainer>
-            <UserName>{user && user.name ? user.name : ''}</UserName>
+            <UserName>Lucas Matheus</UserName>
             <AddVideoButton onClick={() => setHideModal(false)}>
               Cadastrar Vídeo
             </AddVideoButton>
